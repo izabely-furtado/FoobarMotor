@@ -1,0 +1,1 @@
+(Serra) Norte=(Aracruz) Norte=(Linhares) Norte=(São Mateus) Norte=(Teixeira de Freitas) Sul=(Vitória) Sul=(Guarapari) Sul=(Piuma) Oeste=(Venda Nova do Imigrante) Oeste=(Santa Maria de Jetibá) Oeste=(Iúna).

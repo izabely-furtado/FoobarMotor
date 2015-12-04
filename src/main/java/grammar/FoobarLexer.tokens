@@ -1,0 +1,16 @@
+RPAR=9
+PONTO=7
+OESTE=6
+INT=1
+NORTE=3
+ESPACE=10
+LPAR=8
+LESTE=5
+SUL=4
+LETRA=2
+EQUAL=11
+'='=11
+'('=8
+')'=9
+'.'=7
+' '=10

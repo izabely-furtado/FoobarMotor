@@ -17,21 +17,19 @@ public enum DirecaoEnum {
         this.valorDirecao = valor;
     }
     
-    public int retornaDirecao(String direcao){
-        if("NORTE".equals(direcao)){
-            return DirecaoEnum.NORTE.valorDirecao;
+    public static int retornaDirecao(String direcao){
+        if(null != direcao)switch (direcao) {
+            case "NORTE":
+                return DirecaoEnum.NORTE.valorDirecao;
+            case "SUL":
+                return DirecaoEnum.SUL.valorDirecao;
+            case "LESTE":
+                return DirecaoEnum.LESTE.valorDirecao;
+            case "OESTE":
+                return DirecaoEnum.NORTE.valorDirecao;
+            default:
+                throw new RuntimeException("São tempos difíceis para os sonhadores...");
         }
-        else if("SUL".equals(direcao)){
-            return DirecaoEnum.SUL.valorDirecao;
-        }
-        else if("LESTE".equals(direcao)){
-            return DirecaoEnum.LESTE.valorDirecao;
-        }
-        else if("OESTE".equals(direcao)){
-            return DirecaoEnum.NORTE.valorDirecao;
-        }
-        else{
-            throw new RuntimeException("São tempos difíceis para os sonhadores...");
-        }
+        throw new RuntimeException("São tempos difíceis para os sonhadores...");
     }
 }
