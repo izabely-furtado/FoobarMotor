@@ -1,13 +1,13 @@
 // Generated from C:\Users\Izabely\Documents\GitHub\FoobarMotor\src\main\java\Grammar\Foobar.g4 by ANTLR 4.1
 package grammar;
 import cdp.Mapa;
-import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.ArrayList;
+//import java.util.Iterator;
 import java.util.List;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.misc.*;
+//import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
@@ -159,18 +159,7 @@ public class FoobarParser extends Parser {
 					setState(25); match(LPAR);
 					setState(26); ((MapaContext)_localctx).c2 = cidade();
 					setState(27); match(RPAR);
-					_localctx.result.setCidade(new Mapa(((MapaContext)_localctx).direcao.result, ((MapaContext)_localctx).c2.result) {
-
-                                            @Override
-                                            protected String[] strCorrespondentes() {
-                                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                            }
-
-                                            @Override
-                                            protected void processaAqui(String conteudo) {
-                                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                            }
-                                        });
+					_localctx.result.setCidade(((MapaContext)_localctx).direcao.result, ((MapaContext)_localctx).c2.result);
 					}
 					} 
 				}

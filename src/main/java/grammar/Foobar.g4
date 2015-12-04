@@ -6,7 +6,7 @@ prog returns [Mapa result]:
 mapa returns [Mapa result]:
        LPAR cAtual=cidade RPAR {$result = $cAtual.result;}
       (ESPACE direcao EQUAL LPAR c2=cidade RPAR 
-      {$result.setCidade(new Mapa($direcao.result, $c2.result));})*;
+      {$result.setCidade($direcao.result, $c2.result);})*;
       
 cidade returns [Mapa result]: 
        c1=nomeCidade {$result = new Mapa($c1.result);};

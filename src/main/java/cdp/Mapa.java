@@ -14,13 +14,13 @@ public abstract class Mapa implements IMapa{
     private IMapa elementoSul;
     private IMapa elementoLeste;
     private IMapa elementoOeste;
-    private String cidade;
+    private final String cidade;
     
     public Mapa(String cidade){
         this.cidade = cidade;
     }
     
-    public void setDiracao(int direcao, IMapa elemento) {
+    public void setCidade(int direcao, IMapa elemento) {
         this.elementoNorte = elemento;
     }
     
