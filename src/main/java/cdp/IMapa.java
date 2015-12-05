@@ -10,10 +10,20 @@ package cdp;
  * @author 20121bsi0040
  */
 public interface IMapa {
+    
     public void setNorte(IMapa elemento);
     public void setSul(IMapa elemento);
     public void setLeste(IMapa elemento);
     public void setOeste(IMapa elemento);
+    public void setCidade(int direcao, IMapa elemento);
+    
+    public IMapa getNorte();
+    public IMapa getSul();
+    public IMapa getLeste();
+    public IMapa getOeste();
+    public IMapa getCidade(int direcao);
+    
+    public String getNomeCidade();
     
     public void processaConteudo(int conteudo);
 }

@@ -9,7 +9,7 @@ mapa returns [Mapa result]:
       {$result.setCidade($direcao.result, $c2.result);})*;
       
 cidade returns [Mapa result]: 
-       c1=nomeCidade {$result = new Mapa($c1.result);};
+       c1=nomeCidade {$result = new Cidade($c1.result);};
 
 nomeCidade returns [String result]
  @init{String retorno = "";}
