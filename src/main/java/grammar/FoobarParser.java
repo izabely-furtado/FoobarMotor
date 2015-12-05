@@ -1,13 +1,14 @@
 // Generated from C:\Users\Izabely\Documents\GitHub\FoobarMotor\src\main\java\Grammar\Foobar.g4 by ANTLR 4.1
 package grammar;
+import cdp.Cidade;
 import cdp.Mapa;
-//import java.util.ArrayList;
-//import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-//import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
@@ -207,18 +208,7 @@ public class FoobarParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(35); ((CidadeContext)_localctx).c1 = nomeCidade();
-			((CidadeContext)_localctx).result =  new Mapa(((CidadeContext)_localctx).c1.result) {
-
-                            @Override
-                            protected String[] strCorrespondentes() {
-                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                            }
-
-                            @Override
-                            protected void processaAqui(String conteudo) {
-                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                            }
-                        };
+			((CidadeContext)_localctx).result =  new Cidade(((CidadeContext)_localctx).c1.result);
 			}
 		}
 		catch (RecognitionException re) {

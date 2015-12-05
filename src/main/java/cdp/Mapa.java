@@ -5,9 +5,9 @@
  */
 package cdp;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  *
@@ -128,33 +128,35 @@ public abstract class Mapa implements IMapa{
     }
     
     @Override
-    public void processaConteudo(int direcao) {
-        boolean wordFound = false;
+    public void processaConteudo(List<String> cidades, Integer direcao) {
+        boolean cidadeEncontrada =  false;
         //se o conteudo estiver vazio
-        if (strCorrespondentes().length == 0){
-            wordFound = true;
+        if (this.cidadesCorrespondentes().isEmpty()){
+            cidadeEncontrada = false;
         }
-        //se o conteudo n estiver vazio 
+        //verifica se o conteudo pode estar dentre as cidades diretamente mais proximas 
         else{
-            
-            if(this.strCorrespondentes().contains()){
-            for(String str: this.strCorrespondentes()){
-                if(direcao.contains(str)){
-                    wordFound = true;
-                    break;
-                }
+            if(cidades.contains(this.cidadesCorrespondentes().get(direcao))){
+                cidadeEncontrada = true;
             }
         }
-        //se esta no objeto
-        if (wordFound){
-            this.processaConteudo(direcao);
+        //se proximo ao objeto
+        if (cidadeEncontrada){
+            System.out.println("Cidade encontrada nessa direção: " + this.getCidade(direcao).getNomeCidade());
         }
+        //procura se esta mais longe, mas na mesma direção
         else{
-            this.elementoNorte.processaConteudo(direcao);
+            if (this.getCidade(direcao) != null){
+                this.getCidade(direcao).processaConteudo(cidades, direcao);
+            }
+            else{
+                System.out.println("Nenhuma das cidades indicadas fica nessa direção");
+            }
         }
+        
     }
     
-    public abstract java.util.Map<int, String> strCorrespondentes();
+    public abstract Map<Integer, String> cidadesCorrespondentes();
     protected abstract void processaAqui(String conteudo);
     
 }

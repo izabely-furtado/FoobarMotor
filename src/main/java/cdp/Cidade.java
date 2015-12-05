@@ -5,9 +5,7 @@
  */
 package cdp;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,29 +18,29 @@ public class Cidade extends Mapa{
         super(cidade);
     }
 
-    
     @Override
     protected void processaAqui(String conteudo) {
-        System.out.println("Processa ai budega");
+        System.out.println("Cidade: " + this.getNomeCidade());
     }
 
     @Override
-    protected Map<int, String> strCorrespondentes() {
-        Map<int, String> str= new HashMap<int, String>();
+    public Map<Integer, String> cidadesCorrespondentes() {
+        Map<Integer, String> cidades= new HashMap<>();
         
         if(this.getNorte()!=null){
-            str.put(1, this.getNorte().getNomeCidade());
+            cidades.put(DirecaoEnum.NORTE.valorDirecao, this.getNorte().getNomeCidade());
         }
         if(this.getSul()!=null){
-            str.put(2, this.getSul().getNomeCidade());
+            cidades.put(DirecaoEnum.SUL.valorDirecao, this.getSul().getNomeCidade());
         }
         if(this.getLeste()!=null){
-            str.put(3, this.getLeste().getNomeCidade());
+            cidades.put(DirecaoEnum.LESTE.valorDirecao, this.getLeste().getNomeCidade());
         }
         if(this.getOeste()!=null){
-            str.put(4, this.getOeste().getNomeCidade());
+            cidades.put(DirecaoEnum.OESTE.valorDirecao, this.getOeste().getNomeCidade());
         }
-        return str;
+        return cidades;
     }
+    
     
 }

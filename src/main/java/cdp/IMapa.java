@@ -5,6 +5,8 @@
  */
 package cdp;
 
+import java.util.List;
+
 /**
  *
  * @author 20121bsi0040
@@ -25,5 +27,5 @@ public interface IMapa {
     
     public String getNomeCidade();
     
-    public void processaConteudo(int conteudo);
+    public void processaConteudo(List<String> cidades, Integer direcao);
 }
