@@ -1,36 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Foobarmotor : Exercício 7 de 8 da Lista de Padrões de Projeto">
+    <title>Foobarmotor by izabely-furtado</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Foobarmotor</title>
   </head>
-
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/izabely-furtado/FoobarMotor">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/izabely-furtado/FoobarMotor/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/izabely-furtado/FoobarMotor/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/izabely-furtado/FoobarMotor">View on GitHub</a>
+    <div class="wrapper">
 
-          <h1 id="project_title">Foobarmotor</h1>
-          <h2 id="project_tagline">Exercício 7 de 8 da Lista de Padrões de Projeto</h2>
+      <section>
+        <div id="title">
+          <h1>Foobarmotor</h1>
+          <p>Exercício 7 de 8 da Lista de Padrões de Projeto</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/izabely-furtado">izabely-furtado</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/izabely-furtado/FoobarMotor/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/izabely-furtado/FoobarMotor/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
         <h2>
 <a id="cadeia-de-responsabilidade" class="anchor" href="#cadeia-de-responsabilidade" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cadeia de Responsabilidade</h2>
 
@@ -104,23 +111,59 @@
 <h2>
 <a id="interpretador" class="anchor" href="#interpretador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interpretador</h2>
 
+<p>Vejamos a intenção do padrão:</p>
+
+<blockquote>
+<p>“Dada uma linguagem, definir uma representação para sua gramática juntamente com um interpretador que usa a representação para interpretar sentenças dessa linguagem.” GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.</p>
+</blockquote>
+
 <h3>
 <a id="explicação-1" class="anchor" href="#explica%C3%A7%C3%A3o-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explicação</h3>
 
+<p>O Contexto foi definido na classe <strong>Contexto</strong>, esse possui uma entrada e uma saída, essa entrada é processada no construtor gerando uma saída correspondente, de acordo com o modo que esta entrada foi interpretada</p>
+
+<p>O interpretador da entrada foi feito pelo AntlrWorks2, por lá é feita a gramática <strong>Foobar.g4</strong> que gera o Lexer e o Parser necessários para a interpretação, dado isso é necessária o uso da biblioteca do <strong>antlr4-4.0-complete-sources.jar</strong>, pois o uso efetiva uma dependência a esta biblioteca, como pode ser notado pelo código do <strong>Contexto</strong> a seguir:</p>
+
+<p>`
+public class Contexto {</p>
+
+<pre><code>String input;
+IMapa output;
+
+public Contexto(String entra){
+    this.input = entra;
+    CharStream entrada = new ANTLRInputStream(this.input);
+
+    //ANTLRInputStream input = new ANTLRInputStream(System.in);
+    FoobarLexer lexer = new FoobarLexer(entrada);
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    FoobarParser parser = new FoobarParser(tokens);
+
+    if (parser.prog().result != null) {
+        this.output = parser.prog2().result;
+    }
+    else {
+        throw new RuntimeException("!!! Error");
+    }
+</code></pre>
+
+<p>}</p>
+
+<p>}
+` </p>
+
 <h3>
 <a id="motivação-1" class="anchor" href="#motiva%C3%A7%C3%A3o-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivação</h3>
+
+<ul>
+<li><p>Fornece uma maneira de tomar decisões com um fraco acoplamento. </p></li>
+<li><p>É possível variar praticamente todos os componentes sem grandes danos ao projeto. </p></li>
+<li><p>Cada elemento implementa sua própria maneira de responder a requisição, e estas podem ser alteradas facilmente.</p></li>
+</ul>
       </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Foobarmotor maintained by <a href="https://github.com/izabely-furtado">izabely-furtado</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
     </div>
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-
   </body>
 </html>
