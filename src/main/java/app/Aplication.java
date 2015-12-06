@@ -1,11 +1,13 @@
 package app;
 
-import cdp.IMapa;
+import cdp.cadeia.IMapa;
+import cdp.interpreter.Contexto;
 import grammar.FoobarLexer;
 import grammar.FoobarParser;
 import java.io.IOException;
 import java.util.Scanner;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 /*
@@ -20,13 +22,16 @@ import org.antlr.v4.runtime.CommonTokenStream;
  */
 public class Aplication {
     public static void main(String[] args) throws IOException {
-        //Scanner le = new Scanner(System.in);
-        //String lendo = le.next();
+        String entrada ="Serra, Cariacica, Iuna, Aracruz; Norte";
+        Contexto c= new Contexto(entrada);
+        
+        /*Scanner le = new Scanner(System.in);
+        String lendo = le.next();
         String entrada = "(Serra) "
                 + "Norte=(Aracruz) Norte=(Linhares) Norte=(Sao Mateus) Norte=(Teixeira de Freitas) "
                 + "Sul=(Vitoria) Sul=(Guarapari) Sul=(Piuma) "
                 + "Oeste=(Venda Nova do Imigrante) Oeste=(Santa Maria de Jetiba) Oeste=(Iuna).";
-        ANTLRInputStream input = new ANTLRInputStream(entrada);
+        CharStream input = new ANTLRInputStream(lendo);
         
         //ANTLRInputStream input = new ANTLRInputStream(System.in);
         FoobarLexer lexer = new FoobarLexer(input);
@@ -41,5 +46,6 @@ public class Aplication {
         else {
             System.out.println("!!! Error");
         }
+                */
     }
 }

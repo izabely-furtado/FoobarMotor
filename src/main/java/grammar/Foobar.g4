@@ -1,12 +1,18 @@
 grammar Foobar;
 
 @header {
-import cdp.*;
+import cdp.cadeia.*;
 }
 
 
 prog returns [IMapa result]:
       m=mapa PONTO{$result = $m.result;};
+
+prog2 returns [IMapa result]:
+      nCs=nomeCidades  PVIRG ESPACE d=direcao 
+      {IMapa mapaExemplo = new Cidade();
+       $result = mapaExemplo.processaConteudo($nCs.result, $d.result);};
+
 
 mapa returns [IMapa result]:
        LPAR cAtual=cidade RPAR {$result = $cAtual.result;}
@@ -15,6 +21,13 @@ mapa returns [IMapa result]:
       
 cidade returns [IMapa result]: 
        c1=nomeCidade {$result = new Cidade($c1.result);};
+
+nomeCidades returns [List<String> result]
+ @init{List<String> retorno = new ArrayList<>();}
+    :  p1=nomeCidade {retorno.add($p1.result);} 
+      (VIRG ESPACE pn=palavra {retorno.add($pn.result);})* 
+      {$result = retorno;};
+
 
 nomeCidade returns [String result]
  @init{String retorno = "";}
@@ -50,3 +63,8 @@ LPAR  :'(';
 RPAR  :')';
 ESPACE:' ';
 EQUAL :'='; 
+VIRG  :','; 
+PVIRG :';'; 
+
+
+WS : [\t\r\n]+ -> skip;

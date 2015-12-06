@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cdp;
+package cdp.cadeia;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +16,20 @@ public class Cidade extends Mapa{
 
     public Cidade(String cidade) {
         super(cidade);
+    }
+
+    public Cidade() {
+        super("Serra");
+        super.setNorte(new Cidade("Aracruz"));
+        super.setNorte(new Cidade("São Mateus"));
+        super.setNorte(new Cidade("Teixeira de Freitas"));
+        super.setSul(new Cidade("Vitória"));
+        super.setSul(new Cidade("Guarapari"));
+        super.setSul(new Cidade("Piuma"));
+        super.setOeste(new Cidade("Venda Nova do Imigrante"));
+        super.setOeste(new Cidade("Santa Maria de Jetibá"));
+        super.setOeste(new Cidade("Iúna"));
+        
     }
 
     @Override

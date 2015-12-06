@@ -1,7 +1,7 @@
 // Generated from C:\Users\Izabely\Documents\GitHub\FoobarMotor\src\main\java\Grammar\Foobar.g4 by ANTLR 4.1
 package grammar;
 
-import cdp.*;
+import cdp.cadeia.*;
 
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
@@ -32,6 +32,17 @@ public interface FoobarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCidade(@NotNull FoobarParser.CidadeContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link FoobarParser#prog2}.
+	 * @param ctx the parse tree
+	 */
+	void enterProg2(@NotNull FoobarParser.Prog2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link FoobarParser#prog2}.
+	 * @param ctx the parse tree
+	 */
+	void exitProg2(@NotNull FoobarParser.Prog2Context ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link FoobarParser#prog}.
@@ -87,4 +98,15 @@ public interface FoobarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDirecao(@NotNull FoobarParser.DirecaoContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link FoobarParser#nomeCidades}.
+	 * @param ctx the parse tree
+	 */
+	void enterNomeCidades(@NotNull FoobarParser.NomeCidadesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FoobarParser#nomeCidades}.
+	 * @param ctx the parse tree
+	 */
+	void exitNomeCidades(@NotNull FoobarParser.NomeCidadesContext ctx);
 }

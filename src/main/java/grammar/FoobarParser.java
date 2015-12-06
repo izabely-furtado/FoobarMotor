@@ -1,13 +1,16 @@
 // Generated from C:\Users\Izabely\Documents\GitHub\FoobarMotor\src\main\java\Grammar\Foobar.g4 by ANTLR 4.1
 package grammar;
 
-import cdp.*;
+import cdp.cadeia.*;
 
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class FoobarParser extends Parser {
@@ -16,16 +19,17 @@ public class FoobarParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		INT=1, LETRA=2, NORTE=3, SUL=4, LESTE=5, OESTE=6, PONTO=7, LPAR=8, RPAR=9, 
-		ESPACE=10, EQUAL=11;
+		ESPACE=10, EQUAL=11, VIRG=12, PVIRG=13, WS=14;
 	public static final String[] tokenNames = {
 		"<INVALID>", "INT", "LETRA", "NORTE", "SUL", "LESTE", "OESTE", "'.'", 
-		"'('", "')'", "' '", "'='"
+		"'('", "')'", "' '", "'='", "','", "';'", "WS"
 	};
 	public static final int
-		RULE_prog = 0, RULE_mapa = 1, RULE_cidade = 2, RULE_nomeCidade = 3, RULE_palavra = 4, 
-		RULE_direcao = 5, RULE_number = 6;
+		RULE_prog = 0, RULE_prog2 = 1, RULE_mapa = 2, RULE_cidade = 3, RULE_nomeCidades = 4, 
+		RULE_nomeCidade = 5, RULE_palavra = 6, RULE_direcao = 7, RULE_number = 8;
 	public static final String[] ruleNames = {
-		"prog", "mapa", "cidade", "nomeCidade", "palavra", "direcao", "number"
+		"prog", "prog2", "mapa", "cidade", "nomeCidades", "nomeCidade", "palavra", 
+		"direcao", "number"
 	};
 
 	@Override
@@ -71,9 +75,60 @@ public class FoobarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14); ((ProgContext)_localctx).m = mapa();
-			setState(15); match(PONTO);
+			setState(18); ((ProgContext)_localctx).m = mapa();
+			setState(19); match(PONTO);
 			((ProgContext)_localctx).result =  ((ProgContext)_localctx).m.result;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Prog2Context extends ParserRuleContext {
+		public IMapa result;
+		public NomeCidadesContext nCs;
+		public DirecaoContext d;
+		public NomeCidadesContext nomeCidades() {
+			return getRuleContext(NomeCidadesContext.class,0);
+		}
+		public DirecaoContext direcao() {
+			return getRuleContext(DirecaoContext.class,0);
+		}
+		public TerminalNode PVIRG() { return getToken(FoobarParser.PVIRG, 0); }
+		public TerminalNode ESPACE() { return getToken(FoobarParser.ESPACE, 0); }
+		public Prog2Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_prog2; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof FoobarListener ) ((FoobarListener)listener).enterProg2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof FoobarListener ) ((FoobarListener)listener).exitProg2(this);
+		}
+	}
+
+	public final Prog2Context prog2() throws RecognitionException {
+		Prog2Context _localctx = new Prog2Context(_ctx, getState());
+		enterRule(_localctx, 2, RULE_prog2);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(22); ((Prog2Context)_localctx).nCs = nomeCidades();
+			setState(23); match(PVIRG);
+			setState(24); match(ESPACE);
+			setState(25); ((Prog2Context)_localctx).d = direcao();
+			IMapa mapaExemplo = new Cidade();
+			       ((Prog2Context)_localctx).result =  mapaExemplo.processaConteudo(((Prog2Context)_localctx).nCs.result, ((Prog2Context)_localctx).d.result);
 			}
 		}
 		catch (RecognitionException re) {
@@ -136,33 +191,33 @@ public class FoobarParser extends Parser {
 
 	public final MapaContext mapa() throws RecognitionException {
 		MapaContext _localctx = new MapaContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_mapa);
+		enterRule(_localctx, 4, RULE_mapa);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18); match(LPAR);
-			setState(19); ((MapaContext)_localctx).cAtual = cidade();
-			setState(20); match(RPAR);
+			setState(28); match(LPAR);
+			setState(29); ((MapaContext)_localctx).cAtual = cidade();
+			setState(30); match(RPAR);
 			((MapaContext)_localctx).result =  ((MapaContext)_localctx).cAtual.result;
-			setState(32);
+			setState(42);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			while ( _alt!=2 && _alt!=-1 ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(22); match(ESPACE);
-					setState(23); ((MapaContext)_localctx).direcao = direcao();
-					setState(24); match(EQUAL);
-					setState(25); match(LPAR);
-					setState(26); ((MapaContext)_localctx).c2 = cidade();
-					setState(27); match(RPAR);
+					setState(32); match(ESPACE);
+					setState(33); ((MapaContext)_localctx).direcao = direcao();
+					setState(34); match(EQUAL);
+					setState(35); match(LPAR);
+					setState(36); ((MapaContext)_localctx).c2 = cidade();
+					setState(37); match(RPAR);
 					_localctx.result.setCidade(((MapaContext)_localctx).direcao.result, ((MapaContext)_localctx).c2.result);
 					}
 					} 
 				}
-				setState(34);
+				setState(44);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			}
@@ -201,12 +256,89 @@ public class FoobarParser extends Parser {
 
 	public final CidadeContext cidade() throws RecognitionException {
 		CidadeContext _localctx = new CidadeContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_cidade);
+		enterRule(_localctx, 6, RULE_cidade);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(35); ((CidadeContext)_localctx).c1 = nomeCidade();
+			setState(45); ((CidadeContext)_localctx).c1 = nomeCidade();
 			((CidadeContext)_localctx).result =  new Cidade(((CidadeContext)_localctx).c1.result);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class NomeCidadesContext extends ParserRuleContext {
+		public List<String> result;
+		public NomeCidadeContext p1;
+		public PalavraContext pn;
+		public List<PalavraContext> palavra() {
+			return getRuleContexts(PalavraContext.class);
+		}
+		public NomeCidadeContext nomeCidade() {
+			return getRuleContext(NomeCidadeContext.class,0);
+		}
+		public PalavraContext palavra(int i) {
+			return getRuleContext(PalavraContext.class,i);
+		}
+		public List<TerminalNode> ESPACE() { return getTokens(FoobarParser.ESPACE); }
+		public List<TerminalNode> VIRG() { return getTokens(FoobarParser.VIRG); }
+		public TerminalNode ESPACE(int i) {
+			return getToken(FoobarParser.ESPACE, i);
+		}
+		public TerminalNode VIRG(int i) {
+			return getToken(FoobarParser.VIRG, i);
+		}
+		public NomeCidadesContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_nomeCidades; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof FoobarListener ) ((FoobarListener)listener).enterNomeCidades(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof FoobarListener ) ((FoobarListener)listener).exitNomeCidades(this);
+		}
+	}
+
+	public final NomeCidadesContext nomeCidades() throws RecognitionException {
+		NomeCidadesContext _localctx = new NomeCidadesContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_nomeCidades);
+		List<String> retorno = new ArrayList<>();
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(48); ((NomeCidadesContext)_localctx).p1 = nomeCidade();
+			retorno.add(((NomeCidadesContext)_localctx).p1.result);
+			setState(57);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+			while ( _alt!=2 && _alt!=-1 ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(50); match(VIRG);
+					setState(51); match(ESPACE);
+					setState(52); ((NomeCidadesContext)_localctx).pn = palavra();
+					retorno.add(((NomeCidadesContext)_localctx).pn.result);
+					}
+					} 
+				}
+				setState(59);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+			}
+			((NomeCidadesContext)_localctx).result =  retorno;
 			}
 		}
 		catch (RecognitionException re) {
@@ -254,37 +386,37 @@ public class FoobarParser extends Parser {
 
 	public final NomeCidadeContext nomeCidade() throws RecognitionException {
 		NomeCidadeContext _localctx = new NomeCidadeContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_nomeCidade);
+		enterRule(_localctx, 10, RULE_nomeCidade);
 		String retorno = "";
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38); ((NomeCidadeContext)_localctx).p1 = palavra();
+			setState(62); ((NomeCidadeContext)_localctx).p1 = palavra();
 			retorno += ((NomeCidadeContext)_localctx).p1.result;
-			setState(46);
+			setState(70);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			while ( _alt!=2 && _alt!=-1 ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(40); match(ESPACE);
-					setState(41); ((NomeCidadeContext)_localctx).pn = palavra();
+					setState(64); match(ESPACE);
+					setState(65); ((NomeCidadeContext)_localctx).pn = palavra();
 					retorno += " " + ((NomeCidadeContext)_localctx).pn.result;
 					}
 					} 
 				}
-				setState(48);
+				setState(72);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			}
-			setState(53);
-			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			setState(77);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				{
-				setState(49); match(ESPACE);
-				setState(50); ((NomeCidadeContext)_localctx).n = number();
+				setState(73); match(ESPACE);
+				setState(74); ((NomeCidadeContext)_localctx).n = number();
 				retorno += " " + ((NomeCidadeContext)_localctx).n.result;
 				}
 				break;
@@ -326,29 +458,29 @@ public class FoobarParser extends Parser {
 
 	public final PalavraContext palavra() throws RecognitionException {
 		PalavraContext _localctx = new PalavraContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_palavra);
+		enterRule(_localctx, 12, RULE_palavra);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58); 
+			setState(82); 
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			do {
 				switch (_alt) {
 				case 1:
 					{
 					{
-					setState(57); ((PalavraContext)_localctx).LETRA = match(LETRA);
+					setState(81); ((PalavraContext)_localctx).LETRA = match(LETRA);
 					}
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(60); 
+				setState(84); 
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			} while ( _alt!=2 && _alt!=-1 );
 			((PalavraContext)_localctx).result =  (((PalavraContext)_localctx).LETRA!=null?((PalavraContext)_localctx).LETRA.getText():null);
 			}
@@ -386,14 +518,14 @@ public class FoobarParser extends Parser {
 
 	public final DirecaoContext direcao() throws RecognitionException {
 		DirecaoContext _localctx = new DirecaoContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_direcao);
+		enterRule(_localctx, 14, RULE_direcao);
 		try {
-			setState(72);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			setState(96);
+			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(64); match(NORTE);
+				setState(88); match(NORTE);
 				((DirecaoContext)_localctx).result =  1;
 				}
 				break;
@@ -401,7 +533,7 @@ public class FoobarParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(66); match(SUL);
+				setState(90); match(SUL);
 				((DirecaoContext)_localctx).result =  2;
 				}
 				break;
@@ -409,7 +541,7 @@ public class FoobarParser extends Parser {
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(68); match(LESTE);
+				setState(92); match(LESTE);
 				((DirecaoContext)_localctx).result =  3;
 				}
 				break;
@@ -417,7 +549,7 @@ public class FoobarParser extends Parser {
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(70); match(OESTE);
+				setState(94); match(OESTE);
 				((DirecaoContext)_localctx).result =  4;
 				}
 				break;
@@ -454,11 +586,11 @@ public class FoobarParser extends Parser {
 
 	public final NumberContext number() throws RecognitionException {
 		NumberContext _localctx = new NumberContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_number);
+		enterRule(_localctx, 16, RULE_number);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74); ((NumberContext)_localctx).INT = match(INT);
+			setState(98); ((NumberContext)_localctx).INT = match(INT);
 			((NumberContext)_localctx).result =  Integer.parseInt((((NumberContext)_localctx).INT!=null?((NumberContext)_localctx).INT.getText():null));  
 			}
 		}
@@ -474,25 +606,30 @@ public class FoobarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\rP\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\2\3\2\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3!\n\3\f\3\16\3$\13\3\3\4\3\4\3"+
-		"\4\3\5\3\5\3\5\3\5\3\5\3\5\7\5/\n\5\f\5\16\5\62\13\5\3\5\3\5\3\5\3\5\5"+
-		"\58\n\5\3\5\3\5\3\6\6\6=\n\6\r\6\16\6>\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7"+
-		"\3\7\3\7\5\7K\n\7\3\b\3\b\3\b\3\b\2\t\2\4\6\b\n\f\16\2\2O\2\20\3\2\2\2"+
-		"\4\24\3\2\2\2\6%\3\2\2\2\b(\3\2\2\2\n<\3\2\2\2\fJ\3\2\2\2\16L\3\2\2\2"+
-		"\20\21\5\4\3\2\21\22\7\t\2\2\22\23\b\2\1\2\23\3\3\2\2\2\24\25\7\n\2\2"+
-		"\25\26\5\6\4\2\26\27\7\13\2\2\27\"\b\3\1\2\30\31\7\f\2\2\31\32\5\f\7\2"+
-		"\32\33\7\r\2\2\33\34\7\n\2\2\34\35\5\6\4\2\35\36\7\13\2\2\36\37\b\3\1"+
-		"\2\37!\3\2\2\2 \30\3\2\2\2!$\3\2\2\2\" \3\2\2\2\"#\3\2\2\2#\5\3\2\2\2"+
-		"$\"\3\2\2\2%&\5\b\5\2&\'\b\4\1\2\'\7\3\2\2\2()\5\n\6\2)\60\b\5\1\2*+\7"+
-		"\f\2\2+,\5\n\6\2,-\b\5\1\2-/\3\2\2\2.*\3\2\2\2/\62\3\2\2\2\60.\3\2\2\2"+
-		"\60\61\3\2\2\2\61\67\3\2\2\2\62\60\3\2\2\2\63\64\7\f\2\2\64\65\5\16\b"+
-		"\2\65\66\b\5\1\2\668\3\2\2\2\67\63\3\2\2\2\678\3\2\2\289\3\2\2\29:\b\5"+
-		"\1\2:\t\3\2\2\2;=\7\4\2\2<;\3\2\2\2=>\3\2\2\2><\3\2\2\2>?\3\2\2\2?@\3"+
-		"\2\2\2@A\b\6\1\2A\13\3\2\2\2BC\7\5\2\2CK\b\7\1\2DE\7\6\2\2EK\b\7\1\2F"+
-		"G\7\7\2\2GK\b\7\1\2HI\7\b\2\2IK\b\7\1\2JB\3\2\2\2JD\3\2\2\2JF\3\2\2\2"+
-		"JH\3\2\2\2K\r\3\2\2\2LM\7\3\2\2MN\b\b\1\2N\17\3\2\2\2\7\"\60\67>J";
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\20h\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
+		"\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\7\4+\n\4\f\4\16\4.\13\4\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
+		"\7\6:\n\6\f\6\16\6=\13\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\7\7G\n\7\f\7"+
+		"\16\7J\13\7\3\7\3\7\3\7\3\7\5\7P\n\7\3\7\3\7\3\b\6\bU\n\b\r\b\16\bV\3"+
+		"\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\5\tc\n\t\3\n\3\n\3\n\3\n\2\13\2"+
+		"\4\6\b\n\f\16\20\22\2\2f\2\24\3\2\2\2\4\30\3\2\2\2\6\36\3\2\2\2\b/\3\2"+
+		"\2\2\n\62\3\2\2\2\f@\3\2\2\2\16T\3\2\2\2\20b\3\2\2\2\22d\3\2\2\2\24\25"+
+		"\5\6\4\2\25\26\7\t\2\2\26\27\b\2\1\2\27\3\3\2\2\2\30\31\5\n\6\2\31\32"+
+		"\7\17\2\2\32\33\7\f\2\2\33\34\5\20\t\2\34\35\b\3\1\2\35\5\3\2\2\2\36\37"+
+		"\7\n\2\2\37 \5\b\5\2 !\7\13\2\2!,\b\4\1\2\"#\7\f\2\2#$\5\20\t\2$%\7\r"+
+		"\2\2%&\7\n\2\2&\'\5\b\5\2\'(\7\13\2\2()\b\4\1\2)+\3\2\2\2*\"\3\2\2\2+"+
+		".\3\2\2\2,*\3\2\2\2,-\3\2\2\2-\7\3\2\2\2.,\3\2\2\2/\60\5\f\7\2\60\61\b"+
+		"\5\1\2\61\t\3\2\2\2\62\63\5\f\7\2\63;\b\6\1\2\64\65\7\16\2\2\65\66\7\f"+
+		"\2\2\66\67\5\16\b\2\678\b\6\1\28:\3\2\2\29\64\3\2\2\2:=\3\2\2\2;9\3\2"+
+		"\2\2;<\3\2\2\2<>\3\2\2\2=;\3\2\2\2>?\b\6\1\2?\13\3\2\2\2@A\5\16\b\2AH"+
+		"\b\7\1\2BC\7\f\2\2CD\5\16\b\2DE\b\7\1\2EG\3\2\2\2FB\3\2\2\2GJ\3\2\2\2"+
+		"HF\3\2\2\2HI\3\2\2\2IO\3\2\2\2JH\3\2\2\2KL\7\f\2\2LM\5\22\n\2MN\b\7\1"+
+		"\2NP\3\2\2\2OK\3\2\2\2OP\3\2\2\2PQ\3\2\2\2QR\b\7\1\2R\r\3\2\2\2SU\7\4"+
+		"\2\2TS\3\2\2\2UV\3\2\2\2VT\3\2\2\2VW\3\2\2\2WX\3\2\2\2XY\b\b\1\2Y\17\3"+
+		"\2\2\2Z[\7\5\2\2[c\b\t\1\2\\]\7\6\2\2]c\b\t\1\2^_\7\7\2\2_c\b\t\1\2`a"+
+		"\7\b\2\2ac\b\t\1\2bZ\3\2\2\2b\\\3\2\2\2b^\3\2\2\2b`\3\2\2\2c\21\3\2\2"+
+		"\2de\7\3\2\2ef\b\n\1\2f\23\3\2\2\2\b,;HOVb";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

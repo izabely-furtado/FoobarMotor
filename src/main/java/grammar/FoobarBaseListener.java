@@ -1,7 +1,7 @@
 // Generated from C:\Users\Izabely\Documents\GitHub\FoobarMotor\src\main\java\Grammar\Foobar.g4 by ANTLR 4.1
 package grammar;
 
-import cdp.*;
+import cdp.cadeia.*;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -40,6 +40,19 @@ public class FoobarBaseListener implements FoobarListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitCidade(@NotNull FoobarParser.CidadeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterProg2(@NotNull FoobarParser.Prog2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitProg2(@NotNull FoobarParser.Prog2Context ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -105,6 +118,19 @@ public class FoobarBaseListener implements FoobarListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitDirecao(@NotNull FoobarParser.DirecaoContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterNomeCidades(@NotNull FoobarParser.NomeCidadesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitNomeCidades(@NotNull FoobarParser.NomeCidadesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

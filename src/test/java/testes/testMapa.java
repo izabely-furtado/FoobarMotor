@@ -6,9 +6,9 @@ package testes;
  * and open the template in the editor.
  */
 
-import cdp.Cidade;
-import cdp.DirecaoEnum;
-import cdp.IMapa;
+import cdp.cadeia.Cidade;
+import cdp.cadeia.DirecaoEnum;
+import cdp.cadeia.IMapa;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -25,16 +25,7 @@ import org.junit.Test;
 public class testMapa {
     IMapa mapa;
     public testMapa() {
-        this.mapa = new Cidade("Serra");
-        mapa.setNorte(new Cidade("Aracruz"));
-        mapa.setNorte(new Cidade("São Mateus"));
-        mapa.setNorte(new Cidade("Teixeira de Freitas"));
-        mapa.setSul(new Cidade("Vitória"));
-        mapa.setSul(new Cidade("Guarapari"));
-        mapa.setSul(new Cidade("Piuma"));
-        mapa.setOeste(new Cidade("Venda Nova do Imigrante"));
-        mapa.setOeste(new Cidade("Santa Maria de Jetibá"));
-        mapa.setOeste(new Cidade("Iúna"));
+        this.mapa = new Cidade();
     }
     
     @BeforeClass
