@@ -1,14 +1,19 @@
 grammar Foobar;
 
-prog returns [Mapa result]:
+@header {
+import cdp.*;
+}
+
+
+prog returns [IMapa result]:
       m=mapa PONTO{$result = $m.result;};
 
-mapa returns [Mapa result]:
+mapa returns [IMapa result]:
        LPAR cAtual=cidade RPAR {$result = $cAtual.result;}
       (ESPACE direcao EQUAL LPAR c2=cidade RPAR 
       {$result.setCidade($direcao.result, $c2.result);})*;
       
-cidade returns [Mapa result]: 
+cidade returns [IMapa result]: 
        c1=nomeCidade {$result = new Cidade($c1.result);};
 
 nomeCidade returns [String result]

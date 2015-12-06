@@ -27,5 +27,5 @@ public interface IMapa {
     
     public String getNomeCidade();
     
-    public void processaConteudo(List<String> cidades, Integer direcao);
+    public IMapa processaConteudo(List<String> cidades, Integer direcao);
 }

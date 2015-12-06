@@ -1,15 +1,13 @@
 // Generated from C:\Users\Izabely\Documents\GitHub\FoobarMotor\src\main\java\Grammar\Foobar.g4 by ANTLR 4.1
 package grammar;
-import cdp.Cidade;
-import cdp.Mapa;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import org.antlr.v4.runtime.*;
+
+import cdp.*;
+
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import java.util.List;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class FoobarParser extends Parser {
@@ -47,7 +45,7 @@ public class FoobarParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class ProgContext extends ParserRuleContext {
-		public Mapa result;
+		public IMapa result;
 		public MapaContext m;
 		public TerminalNode PONTO() { return getToken(FoobarParser.PONTO, 0); }
 		public MapaContext mapa() {
@@ -90,7 +88,7 @@ public class FoobarParser extends Parser {
 	}
 
 	public static class MapaContext extends ParserRuleContext {
-		public Mapa result;
+		public IMapa result;
 		public CidadeContext cAtual;
 		public DirecaoContext direcao;
 		public CidadeContext c2;
@@ -182,7 +180,7 @@ public class FoobarParser extends Parser {
 	}
 
 	public static class CidadeContext extends ParserRuleContext {
-		public Mapa result;
+		public IMapa result;
 		public NomeCidadeContext c1;
 		public NomeCidadeContext nomeCidade() {
 			return getRuleContext(NomeCidadeContext.class,0);

@@ -21,6 +21,8 @@ public abstract class Mapa implements IMapa{
     private final String cidade;
     
     public Mapa(String cidade){
+        this.elementoLeste = null;
+        this.elementoSul = null;
         this.cidade = cidade;
     }
     
@@ -60,31 +62,31 @@ public abstract class Mapa implements IMapa{
     
     @Override
     public void setSul(IMapa elemento) {
-        if(this.elementoNorte==null){
+        if(this.elementoSul==null){
             this.elementoSul = elemento;
         }
         else{
-            this.elementoNorte.setNorte(elemento);
+            this.elementoSul.setSul(elemento);
         }
     }
     
     @Override
     public void setLeste(IMapa elemento) {
-        if(this.elementoNorte==null){
+        if(this.elementoLeste==null){
             this.elementoLeste = elemento;
         }
         else{
-            this.elementoNorte.setNorte(elemento);
+            this.elementoLeste.setLeste(elemento);
         }
     }
     
     @Override
     public void setOeste(IMapa elemento) {
-        if(this.elementoNorte==null){
+        if(this.elementoOeste==null){
             this.elementoOeste = elemento;
         }
         else{
-            this.elementoNorte.setNorte(elemento);
+            this.elementoOeste.setOeste(elemento);
         }
     }
     
@@ -128,7 +130,7 @@ public abstract class Mapa implements IMapa{
     }
     
     @Override
-    public void processaConteudo(List<String> cidades, Integer direcao) {
+    public IMapa processaConteudo(List<String> cidades, Integer direcao) {
         boolean cidadeEncontrada =  false;
         //se o conteudo estiver vazio
         if (this.cidadesCorrespondentes().isEmpty()){
@@ -142,15 +144,15 @@ public abstract class Mapa implements IMapa{
         }
         //se proximo ao objeto
         if (cidadeEncontrada){
-            System.out.println("Cidade encontrada nessa direção: " + this.getCidade(direcao).getNomeCidade());
+            return this.getCidade(direcao);
         }
         //procura se esta mais longe, mas na mesma direção
         else{
             if (this.getCidade(direcao) != null){
-                this.getCidade(direcao).processaConteudo(cidades, direcao);
+                return this.getCidade(direcao).processaConteudo(cidades, direcao);
             }
             else{
-                System.out.println("Nenhuma das cidades indicadas fica nessa direção");
+                throw new RuntimeException("Nenhuma das cidades indicadas fica nessa direção");
             }
         }
         
