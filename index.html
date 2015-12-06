@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Foobarmotor : Exercício 7 de 8 da Lista de Padrões de Projeto">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Foobarmotor</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/izabely-furtado/FoobarMotor">View on GitHub</a>
+
+          <h1 id="project_title">Foobarmotor</h1>
+          <h2 id="project_tagline">Exercício 7 de 8 da Lista de Padrões de Projeto</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/izabely-furtado/FoobarMotor/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/izabely-furtado/FoobarMotor/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="cadeia-de-responsabilidade" class="anchor" href="#cadeia-de-responsabilidade" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cadeia de Responsabilidade</h2>
+
+<p>O padrão Chain of Responsibility possui a seguinte intenção:</p>
+
+<blockquote>
+<p>“Evitar o acoplamento do remetente de uma solicitação ao seu receptor, ao dar a mais de um objeto a oportunidade de tratar a solicitação. Encadear os objetos receptores, passando a solicitação ao longo da cadeia até que um objeto a trate.” GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.</p>
+</blockquote>
+
+<h3>
+<a id="diagrama" class="anchor" href="#diagrama" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diagrama</h3>
+
+<p>Segue o diagrama correspondente a implementação feita nesse projeto utilizando o padrão</p>
+
+<p><img src="https://github.com/izabely-furtado/FoobarMotor/blob/master/diagramas/DiagramCadeiaResponsabilidade.png?raw=true" alt=""></p>
+
+<h3>
+<a id="explicação" class="anchor" href="#explica%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explicação</h3>
+
+<p>Primeiramente foi feita uma enumeração das direções possíveis na classe <strong>DirecaoEnum</strong> para facilitar o entendimento sem números mágicos.</p>
+
+<p>Assim foi feito a interface <strong>IMapa</strong> que padronizasse os métodos que deveriam ser implementados, não só isso, essa representa os tipos de todos os elementos em <strong>Mapa</strong> pois esses devem obrigatoriamente possuir todas essas funções.</p>
+
+<p>As funções da interface são referentes e recuperação e inserção de novos elementos em cada uma das direções, a recuperação do nome da cidade atual e do processamento dos dados estando em cada uma das cidades do mapa.</p>
+
+<p>A implementação primordial trata-se de <strong>processaConteudo</strong>, tanto que os testes foram feitos primordial nessa função e nas que esta usava, esta função pega como entrada uma lista de cidades e uma direção e retorna, qual das cidades da lista está mais próxima se acabar seguindo  aquela determinada direção. Assim como mostrado no código abaixo:</p>
+
+<p>`<a href="https://github.com/Override" class="user-mention">@Override</a></p>
+
+<pre><code>public IMapa processaConteudo(List&lt;String&gt; cidades, Integer direcao) {
+    boolean cidadeEncontrada =  false;
+    //se o conteudo estiver vazio
+    if (this.cidadesCorrespondentes().isEmpty()){
+        cidadeEncontrada = false;
+    }
+    //verifica se o conteudo pode estar dentre as cidades diretamente mais proximas 
+    else{
+        if(cidades.contains(this.cidadesCorrespondentes().get(direcao))){
+            cidadeEncontrada = true;
+        }
+    }
+    //se proximo ao objeto
+    if (cidadeEncontrada){
+        return this.getCidade(direcao);
+    }
+    //procura se esta mais longe, mas na mesma direção
+    else{
+        if (this.getCidade(direcao) != null){
+            return this.getCidade(direcao).processaConteudo(cidades, direcao);
+        }
+        else{
+            throw new RuntimeException("Nenhuma das cidades indicadas fica nessa direção");
+        }
+    }
+
+}
+</code></pre>
+
+<p>`</p>
+
+<p>Outro ponto a ser considerado são a funções abstradas em <strong>Mapa</strong>, são estas <strong>cidadesCorrespondente</strong> e <strong>processaAqui</strong>, a primeira representa um HashMap correlacionando a direção e qual cidade esta mais próxima naquela direção e a segunda imprime o nome da cidade atual.</p>
+
+<h3>
+<a id="motivação" class="anchor" href="#motiva%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivação</h3>
+
+<ul>
+<li>Acaba com as estruturas de decisão</li>
+<li>Faz com que cada classe identifique o problema e só processe se for com ela, se a carapuça servir</li>
+</ul>
+
+<h2>
+<a id="interpretador" class="anchor" href="#interpretador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interpretador</h2>
+
+<h3>
+<a id="explicação-1" class="anchor" href="#explica%C3%A7%C3%A3o-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explicação</h3>
+
+<h3>
+<a id="motivação-1" class="anchor" href="#motiva%C3%A7%C3%A3o-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivação</h3>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Foobarmotor maintained by <a href="https://github.com/izabely-furtado">izabely-furtado</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
